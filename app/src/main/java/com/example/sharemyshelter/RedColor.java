@@ -11,8 +11,9 @@ public class RedColor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("myTest", "RedColor onCreate");
         setContentView(R.layout.activity_red_color2);
+
+        Log.i("myTest", "RedColor onCreate");
 
         TextView alertTextView = findViewById(R.id.alertTextView);
         TextView shelterInfo = findViewById(R.id.shelterInfoTextView);

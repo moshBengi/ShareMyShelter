@@ -21,10 +21,13 @@ public class Shelter implements Serializable {
 //    }
 
 
-    public Shelter(String shelterName, String city, String address, String description) {
+    public Shelter(String shelterName, String city, String address, String description, double lon, double lat) {
         this.shelterName = shelterName;
         this.city = city;
         this.description = description;
-        id = idCounter++;
+        this.id = idCounter++;
+        this.lon = lon;
+        this.lat = lat;
+
     }
 }

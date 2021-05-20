@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         TextView shelterMapTextView = findViewById(R.id.shelterMapTextView);
         ShelterApp shelterApp = (ShelterApp) getApplicationContext();
         ArrayList<Shelter> shelters = shelterApp.getShelters();
+        shelters.add(new Shelter("ourShelter", "jerus", "hatayasim", "dsfsdf", 0, 0));
 
 
         showNotification("title", "msg");
@@ -56,21 +57,27 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 //                startActivity(intentToShowResults);
 
                 boolean isShelterFound = incomingIntent.getBooleanExtra("isShelterFound", false);
-                Intent intent;
                 if (isShelterFound) {
+                    Intent intentFound = new Intent(MainActivity.this, RedColor.class);
 
-                    intent = new Intent(MainActivity.this, RedColor.class);
-                    intent.putExtra("shelter", incomingIntent.getStringExtra("shelter"));
+
+                    intentFound.putExtra("shelter", (Shelter) incomingIntent.getSerializableExtra("shelter"));
+                    intentFound.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intentFound.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    intentFound.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+                    intentFound.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    MainActivity.this.startActivity(intentFound);
                 } else {
-                    intent = new Intent(MainActivity.this, NoShelterActivity.class);
+                    Intent intentNotFound = new Intent(MainActivity.this, NoShelterActivity.class);
+                    intentNotFound.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intentNotFound.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    intentNotFound.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+                    intentNotFound.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+                    MainActivity.this.startActivity(intentNotFound);
                 }
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                MainActivity.this.startActivity(intent);
+
             }
         };
         registerReceiver(broadcastReceiverForRedColor, new IntentFilter("redColor"));

@@ -6,7 +6,6 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -22,9 +21,9 @@ public class ListenerService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.i("myTest", "ListenerService");
 
-        timer();
+        timer(8);
 
-        Shelter nearestShelter = findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(), 31.7, 35.1);
+        Shelter nearestShelter = findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(), 31.7, 35.1, 100);
         Intent intentToBroadcast = new Intent("redColor");
         if (nearestShelter == null) {
             intentToBroadcast.putExtra("isShelterFound", false);
@@ -41,9 +40,9 @@ public class ListenerService extends IntentService {
 
     }
 
-    private void timer() {
+    private void timer(int seconds) {
         try {
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < seconds; i++) {
 
                 Log.i("myTest", String.valueOf(i));
                 TimeUnit.SECONDS.sleep(1);
@@ -53,8 +52,8 @@ public class ListenerService extends IntentService {
         }
     }
 
-    Shelter findClosestLocation(ArrayList<Shelter> shelters, double lon, double lat) {
-        if (shelters.isEmpty()){
+    Shelter findClosestLocation(ArrayList<Shelter> shelters, double lon, double lat, int maxDistance) {
+        if (shelters.isEmpty()) {
             return null;
         }
         Shelter closetShelter = shelters.get(0);
@@ -67,9 +66,9 @@ public class ListenerService extends IntentService {
                 closestDist = currentDist;
             }
         }
-        if (distance_in_meters(closetShelter, lon, lat) > 100) {
-            return null;
-        }
+//        if (distance_in_meters(closetShelter, lon, lat) > maxDistance) {
+//            return null;
+//        }
         return closetShelter;
     }
 

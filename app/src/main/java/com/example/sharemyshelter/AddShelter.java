@@ -28,7 +28,7 @@ public class AddShelter extends AppCompatActivity {
             {
                 Shelter newShelter = new Shelter(name.getText().toString(),
                         city.getText().toString(), address.getText().toString(),
-                        description.getText().toString());
+                        description.getText().toString(),0,0);
                 ShelterApp app = (ShelterApp) getApplicationContext();
                 app.addShelter(newShelter);
                 name.setText("");
