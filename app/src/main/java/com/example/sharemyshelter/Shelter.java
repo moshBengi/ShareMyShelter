@@ -4,7 +4,9 @@ import android.location.Geocoder;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class Shelter {
+import java.io.Serializable;
+
+public class Shelter implements Serializable {
     private static int idCounter = 0;
     int id;
     String shelterName;

@@ -29,35 +29,42 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.i("myTest","MainActivity Oncreate");
+        Log.i("myTest", "MainActivity Oncreate");
         TextView shelterMapTextView = findViewById(R.id.shelterMapTextView);
         ShelterApp shelterApp = (ShelterApp) getApplicationContext();
         ArrayList<Shelter> shelters = shelterApp.getShelters();
 
 
-
-        showNotification("title","msg");
+        showNotification("title", "msg");
 
         shelterMapTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mapIntent = new Intent(MainActivity.this,SheltersMap.class);
+                Intent mapIntent = new Intent(MainActivity.this, SheltersMap.class);
                 startActivity(mapIntent);
             }
         });
         broadcastReceiverForRedColor = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent incomingIntent) {
-                Log.i("myTest","got a broadcast");
-                if (incomingIntent == null || !incomingIntent.getAction().equals("redColor")) return;
+                Log.i("myTest", "got a broadcast");
+                if (incomingIntent == null || !incomingIntent.getAction().equals("redColor"))
+                    return;
 
 //                Intent intentToShowResults = new Intent(MainActivity.this, RedColor.class);
 //                intentToShowResults.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(intentToShowResults);
 
-                Intent intent = new Intent(MainActivity.this, RedColor.class);
-                intent.putExtra("shelter",incomingIntent.getStringExtra("shelter"));
-                intent.putExtra("description",incomingIntent.getStringExtra("description"));
+                boolean isShelterFound = incomingIntent.getBooleanExtra("isShelterFound", false);
+                Intent intent;
+                if (isShelterFound) {
+
+                    intent = new Intent(MainActivity.this, RedColor.class);
+                    intent.putExtra("shelter", incomingIntent.getStringExtra("shelter"));
+                } else {
+                    intent = new Intent(MainActivity.this, NoShelterActivity.class);
+
+                }
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
@@ -68,18 +75,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         };
         registerReceiver(broadcastReceiverForRedColor, new IntentFilter("redColor"));
 
-        Intent intent = new Intent(this,ListenerService.class);
+        Intent intent = new Intent(this, ListenerService.class);
         startService(intent);
 //        Intent intent = new Intent(this, AddShelter.class);
 //        startActivity(intent);
     }
+
     @Override
     public void onLocationChanged(Location loc) {
         Log.i("myTest", loc.toString());
         Double lat = loc.getLatitude();
         Double lng = loc.getLongitude();
     }
-
 
 
     void showNotification(String title, String message) {
