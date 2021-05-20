@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         Intent intent = new Intent(this,ListenerService.class);
         startService(intent);
-
-
+//        Intent intent = new Intent(this, AddShelter.class);
+//        startActivity(intent);
     }
     @Override
     public void onLocationChanged(Location loc) {

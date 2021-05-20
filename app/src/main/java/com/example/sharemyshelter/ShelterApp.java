@@ -9,16 +9,20 @@ import com.google.android.gms.maps.model.LatLng;
 
 
 public class ShelterApp extends Application {
-    ArrayList<Shelter> shelters = new ArrayList<>();
+    private ArrayList<Shelter> shelters = new ArrayList<>();
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Shelter shelter = new Shelter(new LatLng(31.76904, 35.21633));
-        shelters.add(shelter);
+//        Shelter shelter = new Shelter(new LatLng(31.76904, 35.21633));
+//        shelters.add(shelter);
     }
 
     public ArrayList<Shelter> getShelters() {
         return shelters;
+    }
+
+    public void addShelter(Shelter newShelter) {
+        this.shelters.add(newShelter);
     }
 }
