@@ -3,6 +3,7 @@ package com.example.sharemyshelter;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,6 +43,7 @@ public class AddShelter extends AppCompatActivity {
                 longitude.setText("");
                 latitude.setText("");
                 address.setText("");
+                Toast.makeText(AddShelter.this, "Shelter added successfully", Toast.LENGTH_LONG).show();
             }
         });
 //        Geocoder geocoder = new Geocoder(this);
