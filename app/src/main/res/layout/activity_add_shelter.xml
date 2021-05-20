@@ -38,19 +38,14 @@
             android:inputType="text"
             android:gravity="center"/>
 
-        <EditText
-            android:id="@+id/picture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="picture"
-            android:textSize="25sp"
-            android:inputType="text"
-            android:gravity="center"/>
-
-<!--        <Spinner-->
-<!--            android:id="@+id/mySpinner"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content" />-->
+<!--        <EditText-->
+<!--            android:id="@+id/picture"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="picture"-->
+<!--            android:textSize="25sp"-->
+<!--            android:inputType="text"-->
+<!--            android:gravity="center"/>-->
 
         <EditText
             android:id="@+id/address"

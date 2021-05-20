@@ -16,7 +16,7 @@ public class AddShelter extends AppCompatActivity {
         EditText name = findViewById(R.id.name);
         EditText city = findViewById(R.id.city);
         EditText description = findViewById(R.id.description);
-        EditText picture = findViewById(R.id.picture);
+//        EditText picture = findViewById(R.id.picture);
         EditText address = findViewById(R.id.address);
         Button addButton = findViewById(R.id.addButton);
 
