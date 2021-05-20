@@ -25,7 +25,7 @@ public class ListenerService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.i("myTest","ListenerService");
         try {
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < 8; i++) {
 
                 Log.i("myTest",String.valueOf(i));
                 TimeUnit.SECONDS.sleep(1);
@@ -34,7 +34,8 @@ public class ListenerService extends IntentService {
             e.printStackTrace();
         }
         Intent intentToBroadcast = new Intent("redColor");
-        intent.putExtra("description","Alarm in Tel Aviv you got 90 seconds to evacuate");
+        intentToBroadcast.putExtra("description","Alarm in Tel Aviv you got 90 seconds to evacuate");
+        intentToBroadcast.putExtra("shelter"," nearest shelter is: even gvirol 38 ");
         sendBroadcast(intentToBroadcast);
 //        Intent intent1 = new Intent("android.intent.category.LAUNCHER");
 //        intent1.setClassName("com.your.package", "com.your.package.MainActivity");

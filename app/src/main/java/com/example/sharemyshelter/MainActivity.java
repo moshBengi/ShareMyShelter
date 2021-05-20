@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -50,8 +51,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 Log.i("myTest","got a broadcast");
                 if (incomingIntent == null || !incomingIntent.getAction().equals("redColor")) return;
 
-                Intent intentToShowResults = new Intent(MainActivity.this, RedColor.class);
-                startActivity(intentToShowResults);
+//                Intent intentToShowResults = new Intent(MainActivity.this, RedColor.class);
+//                intentToShowResults.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intentToShowResults);
+
+                Intent intent = new Intent(MainActivity.this, RedColor.class);
+                intent.putExtra("shelter",incomingIntent.getStringExtra("shelter"));
+                intent.putExtra("description",incomingIntent.getStringExtra("description"));
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                MainActivity.this.startActivity(intent);
             }
         };
         registerReceiver(broadcastReceiverForRedColor, new IntentFilter("redColor"));
