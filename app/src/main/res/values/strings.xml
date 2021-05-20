@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ShareMyShelter</string>
+    <string name="title_activity_red_color">Map</string>
 </resources>
