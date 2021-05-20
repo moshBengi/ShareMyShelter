@@ -16,24 +16,31 @@ public class AddShelter extends AppCompatActivity {
         EditText name = findViewById(R.id.name);
         EditText city = findViewById(R.id.city);
         EditText description = findViewById(R.id.description);
-//        EditText picture = findViewById(R.id.picture);
         EditText address = findViewById(R.id.address);
+        EditText longitude = findViewById(R.id.longitude);
+        EditText latitude = findViewById(R.id.latitude);
         Button addButton = findViewById(R.id.addButton);
 
         addButton.setOnClickListener(v -> {
             if (!name.getText().toString().equals("")
             && !city.getText().toString().equals("")
             && !description.getText().toString().equals("")
+            && !longitude.getText().toString().equals("")
+            && !latitude.getText().toString().equals("")
             && !address.getText().toString().equals(""))
             {
                 Shelter newShelter = new Shelter(name.getText().toString(),
                         city.getText().toString(), address.getText().toString(),
-                        description.getText().toString(),0,0);
+                        description.getText().toString(),
+                        Double.parseDouble(longitude.getText().toString()),
+                        Double.parseDouble(latitude.getText().toString()));
                 ShelterApp app = (ShelterApp) getApplicationContext();
                 app.addShelter(newShelter);
                 name.setText("");
                 city.setText("");
                 description.setText("");
+                longitude.setText("");
+                latitude.setText("");
                 address.setText("");
             }
         });
