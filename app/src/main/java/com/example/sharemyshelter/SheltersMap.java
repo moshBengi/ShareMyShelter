@@ -47,9 +47,17 @@ public class SheltersMap extends FragmentActivity implements OnMapReadyCallback 
         ArrayList<Shelter> shelters = ((ShelterApp)getApplicationContext()).getShelters();
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        LatLng latLng = null;
+        for(Shelter shelter:shelters){
+            latLng = new LatLng(shelter.lat,shelter.lon);
+            mMap.addMarker(new MarkerOptions().position(latLng).title(shelter.shelterName));
+
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
     }
 }
