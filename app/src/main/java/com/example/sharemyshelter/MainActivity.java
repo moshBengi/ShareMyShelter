@@ -8,8 +8,10 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -20,15 +22,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
+    private BroadcastReceiver broadcastReceiverForRedColor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.i("myTest","MainActivity Oncreate");
         TextView shelterMapTextView = findViewById(R.id.shelterMapTextView);
         ShelterApp shelterApp = (ShelterApp) getApplicationContext();
         ArrayList<Shelter> shelters = shelterApp.getShelters();
+
+
 
         showNotification("title","msg");
 
@@ -39,6 +44,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 startActivity(mapIntent);
             }
         });
+        broadcastReceiverForRedColor = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent incomingIntent) {
+                Log.i("myTest","got a broadcast");
+                if (incomingIntent == null || !incomingIntent.getAction().equals("redColor")) return;
+
+                Intent intentToShowResults = new Intent(MainActivity.this, RedColor.class);
+                startActivity(intentToShowResults);
+            }
+        };
+        registerReceiver(broadcastReceiverForRedColor, new IntentFilter("redColor"));
+
+        Intent intent = new Intent(this,ListenerService.class);
+        startService(intent);
 
 
     }
