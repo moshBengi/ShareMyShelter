@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("myTest", "MainActivity Oncreate");
-        TextView shelterMapTextView = findViewById(R.id.shelterMapTextView);
+        ImageView shelterMapTextView = findViewById(R.id.sheltersMapImageView);
         ShelterApp shelterApp = (ShelterApp) getApplicationContext();
         ArrayList<Shelter> shelters = shelterApp.getShelters();
         AddKnownShelters(shelters);
@@ -89,13 +90,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Intent intent = new Intent(this, ListenerService.class);
         startService(intent);
 
-        Button addButton = findViewById(R.id.addButton);
-        addButton.setOnClickListener(v -> {
+//        Button addButton = findViewById(R.id.addButton);
+//        addButton.setOnClickListener(v -> {
+//            Intent intentToAddShelter = new Intent(this, AddShelter.class);
+//            startActivity(intentToAddShelter);
+//        });
+        ImageView imageView = findViewById(R.id.addShelterImageView);
+        imageView.setOnClickListener(v -> {
             Intent intentToAddShelter = new Intent(this, AddShelter.class);
             startActivity(intentToAddShelter);
         });
-//        Intent intent = new Intent(this, AddShelter.class);
-//        startActivity(intent);
+
     }
 
     private void AddKnownShelters(ArrayList<Shelter> shelters) {

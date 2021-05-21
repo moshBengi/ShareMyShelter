@@ -11,28 +11,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/shelterMapTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#D62F2F"
-            android:gravity="center"
-            android:shadowColor="#E60707"
-            android:text="Shelters Map"
-            android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/shelterMapTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#D62F2F"-->
+<!--            android:gravity="center"-->
+<!--            android:shadowColor="#E60707"-->
+<!--            android:text="Shelters Map"-->
+<!--            android:textSize="40sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="265dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="220dp"
-            android:text="Add Shelter"
+<!--        <Button-->
+<!--            android:id="@+id/addButton"-->
+<!--            android:layout_width="265dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_marginTop="220dp"-->
+<!--            android:text="Add Shelter"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/shelterMapTextView" />-->
+
+        <ImageView
+            android:id="@+id/addShelterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shelterMapTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/sheltersMapImageView"
+            app:srcCompat="@drawable/addshelter" />
+
+        <ImageView
+            android:id="@+id/sheltersMapImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="300dp"
+            app:layout_constraintBottom_toTopOf="@id/addShelterImageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/sheltersmapbutton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

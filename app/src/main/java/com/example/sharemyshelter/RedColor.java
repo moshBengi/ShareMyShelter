@@ -25,7 +25,7 @@ public class RedColor extends AppCompatActivity {
         ImageView button = findViewById(R.id.button);
         alertTextView.setText("RUN!!");
         Shelter shelter = (Shelter) (getIntent().getSerializableExtra("shelter"));
-        shelterInfo.setText(shelter.description);
+        shelterInfo.setText("Shelter details: \n".concat(shelter.description));
 
         double lat = shelter.lat;
         double lon = shelter.lon;
