@@ -3,6 +3,7 @@ package com.example.sharemyshelter;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -58,6 +59,7 @@ public class SheltersMap extends FragmentActivity implements OnMapReadyCallback 
 
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        Toast.makeText(this,String.format("found %s shelters",shelters.size()),Toast.LENGTH_LONG).show();
 
     }
 }
