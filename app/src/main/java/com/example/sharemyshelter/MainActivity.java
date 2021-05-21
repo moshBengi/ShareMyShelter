@@ -101,10 +101,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private void AddKnownShelters(ArrayList<Shelter> shelters) {
         shelters.add(new Shelter("הבור בקריה", "Tel Aviv", "שאול המלך 14", "הבור בקר\"", 34.788810, 32.075694));
         shelters.add(new Shelter("papic", "jeru", "בניין שפרינצק", "shelter in papik", 35.196117, 31.777962));
-        shelters.add(new Shelter("beit hakerem shelter", "jeru", "החלוץ 23", "shelter in beit hakerem", 35.188338, 31.778366));
-        shelters.add(new Shelter("beit hakerem shelter", "jeru", "החלוץ 23", "shelter in beit hakerem", 35.188338, 31.778366));
-        shelters.add(new Shelter("beit hakerem shelter", "jeru", "החלוץ 23", "shelter in beit hakerem", 35.188338, 31.778366));
-        shelters.add(new Shelter("beit hakerem shelter", "jeru", "החלוץ 23", "shelter in beit hakerem", 35.188338, 31.778366));
+        shelters.add(new Shelter("hadasa har hazofim shelter", "jeru", "מרכז רפואי הדסה הר הצופים", "shelter in hadasa har hzofim", 35.242502, 31.797495));
+        shelters.add(new Shelter("hadasa ein carem shelter", "jeru", "הדסה עין כרם", "shelter in ein carem", 35.150087, 31.765108));
+        shelters.add(new Shelter("mevaseret zion shelter", "jeru", "מבשרת ירושלים", "shelter inmevaseret zion", 35.157417, 31.802206));
+        shelters.add(new Shelter("ramat rachel shelter", "jeru", "מלון רמת רחל, ירושלים", "shelter in ramat rachel", 35.218376, 31.737980));
     }
 
     @Override
