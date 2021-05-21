@@ -54,7 +54,7 @@ public class AddShelter extends AppCompatActivity {
     }
 
     private void startAlarm() {
-        ListenerService.timer(2);
+        ListenerService.timer(10);
         Shelter nearestShelter = ListenerService.findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(),35.196982 , 31.777692, 100);
 
         Intent intentToBroadcast = new Intent("redColor");

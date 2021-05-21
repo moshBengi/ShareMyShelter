@@ -21,7 +21,7 @@ public class ListenerService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.i("myTest", "ListenerService");
 
-        timer(2);
+        timer(15);
 
         Shelter nearestShelter = findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(),35.196982 , 31.777692, 1000);
         Intent intentToBroadcast = new Intent("redColor");
