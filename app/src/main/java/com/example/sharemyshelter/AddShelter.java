@@ -50,17 +50,12 @@ public class AddShelter extends AppCompatActivity {
                 startAlarm();
             }
         });
-//        Geocoder geocoder = new Geocoder(this);
-//        try {
-//            List<Address> addresses = geocoder.getFromLocationName(address.getText().toString(), 1);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
     private void startAlarm() {
         ListenerService.timer(2);
-        Shelter nearestShelter = ListenerService.findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(),35.196982 , 31.777692, 1000);
+        Shelter nearestShelter = ListenerService.findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(),35.196982 , 31.777692, 100);
 
         Intent intentToBroadcast = new Intent("redColor");
         if (nearestShelter == null) {
