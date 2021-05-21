@@ -45,21 +45,21 @@ public class SheltersMap extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        ArrayList<Shelter> shelters = ((ShelterApp)getApplicationContext()).getShelters();
+        ArrayList<Shelter> shelters = ((ShelterApp) getApplicationContext()).getShelters();
 
         // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
 
         LatLng latLng = null;
-        for(Shelter shelter:shelters){
-            latLng = new LatLng(shelter.lat,shelter.lon);
+        for (Shelter shelter : shelters) {
+            latLng = new LatLng(shelter.lat, shelter.lon);
             mMap.addMarker(new MarkerOptions().position(latLng).title(shelter.shelterName));
 
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        Toast.makeText(this,String.format("found %s shelters",shelters.size()),Toast.LENGTH_LONG).show();
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+
+        Toast.makeText(this, String.format("found %s shelters", shelters.size()), Toast.LENGTH_LONG).show();
 
     }
 }

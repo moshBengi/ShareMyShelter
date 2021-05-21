@@ -22,6 +22,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+// lat of papik shelter 31.777962
+// long of papik shelter 35.196117
+
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private BroadcastReceiver broadcastReceiverForRedColor = null;
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         TextView shelterMapTextView = findViewById(R.id.shelterMapTextView);
         ShelterApp shelterApp = (ShelterApp) getApplicationContext();
         ArrayList<Shelter> shelters = shelterApp.getShelters();
-        shelters.add(new Shelter("ourShelter", "jerus", "hatayasim", "idans 'MAMAD'", 0, 0));
+        AddKnownShelters(shelters);
 
 
 //        showNotification("title", "msg");
@@ -93,6 +96,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         });
 //        Intent intent = new Intent(this, AddShelter.class);
 //        startActivity(intent);
+    }
+
+    private void AddKnownShelters(ArrayList<Shelter> shelters) {
+        shelters.add(new Shelter("הבור בקריה", "Tel Aviv", "שאול המלך 14", "הבור בקר\"", 34.788810, 32.075694));
+        shelters.add(new Shelter("papic", "jeru", "בניין שפרינצק", "paljkjkjjj", 35.196117, 31.777962));
     }
 
     @Override

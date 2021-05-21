@@ -14,6 +14,7 @@ public class Shelter implements Serializable {
     String description;
     double lat;
     double lon;
+    String address;
 
 //    public Shelter(LatLng latLng) {
 //        lat = latLng.latitude;
@@ -28,6 +29,6 @@ public class Shelter implements Serializable {
         this.id = idCounter++;
         this.lon = lon;
         this.lat = lat;
-
+        this.address = address;
     }
 }

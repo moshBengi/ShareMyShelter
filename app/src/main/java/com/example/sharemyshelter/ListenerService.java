@@ -21,9 +21,9 @@ public class ListenerService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.i("myTest", "ListenerService");
 
-        timer(8);
+        timer(2);
 
-        Shelter nearestShelter = findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(), 31.7, 35.1, 100);
+        Shelter nearestShelter = findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(),35.196982 , 31.777692, 1000);
         Intent intentToBroadcast = new Intent("redColor");
         if (nearestShelter == null) {
             intentToBroadcast.putExtra("isShelterFound", false);
@@ -66,14 +66,14 @@ public class ListenerService extends IntentService {
                 closestDist = currentDist;
             }
         }
-//        if (distance_in_meters(closetShelter, lon, lat) > maxDistance) {
-//            return null;
-//        }
+        if (distance_in_meters(closetShelter, lon, lat) > maxDistance) {
+            return null;
+        }
         return closetShelter;
     }
 
 
-    double distance_in_meters(Shelter shelter, double lon, double lat) {
+    public static double distance_in_meters(Shelter shelter, double lon, double lat) {
         double R = 6378.137; // Radius of earth in KM
         double dLat = shelter.lat * Math.PI / 180 - lat * Math.PI / 180;
         double dLon = shelter.lon * Math.PI / 180 - lon * Math.PI / 180;
@@ -82,6 +82,8 @@ public class ListenerService extends IntentService {
                         Math.sin(dLon / 2) * Math.sin(dLon / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double d = R * c;
+        Log.i("myTest", String.valueOf(d*1000));
+
         return d * 1000; // meters
 
     }

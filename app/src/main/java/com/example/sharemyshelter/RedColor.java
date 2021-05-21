@@ -23,12 +23,19 @@ public class RedColor extends AppCompatActivity {
         TextView alertTextView = findViewById(R.id.alertTextView);
         TextView shelterInfo = findViewById(R.id.shelterInfoTextView);
         ImageView button = findViewById(R.id.button);
+        alertTextView.setText("RUN!!");
+        Shelter shelter = (Shelter) (getIntent().getSerializableExtra("shelter"));
+        shelterInfo.setText(shelter.description);
 
+        double lat = shelter.lat;
+        double lon = shelter.lon;
+        String address = shelter.address;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri gmmIntentUri = Uri.parse("google.navigation:q=רחוב+יוסי+בן+יועזר+41+ירושלים&mode=w");
-                // Uri gmmIntentUri = Uri.parse("google.navigation:geo:31.7768,-122.4192&mode=w");
+                Uri gmmIntentUri = Uri.parse(String.format("google.navigation:q=+%s+ירושלים&mode=w", address));
+//                Uri gmmIntentUri = Uri.parse("google.navigation:q=רחוב+יוסי+בן+יועזר+41+ירושלים&mode=w");
+//                 Uri gmmIntentUri = Uri.parse(String.format("google.navigation:geo:3%s,%s&mode=w",lat,lon));
 
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
@@ -36,8 +43,6 @@ public class RedColor extends AppCompatActivity {
             }
         });
 
-        alertTextView.setText("RUN!!");
-        Shelter shelter = (Shelter) (getIntent().getSerializableExtra("shelter"));
-        shelterInfo.setText(shelter.description);
+
     }
 }
