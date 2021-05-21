@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class RedColor extends AppCompatActivity {
@@ -21,9 +22,9 @@ public class RedColor extends AppCompatActivity {
 
         TextView alertTextView = findViewById(R.id.alertTextView);
         TextView shelterInfo = findViewById(R.id.shelterInfoTextView);
-        Button navigateButton = findViewById(R.id.navigateButton);
+        ImageView button = findViewById(R.id.button);
 
-        navigateButton.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri gmmIntentUri = Uri.parse("google.navigation:q=רחוב+יוסי+בן+יועזר+41+ירושלים&mode=w");

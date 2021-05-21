@@ -1,9 +1,12 @@
 package com.example.sharemyshelter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.sharemyshelter.ListenerService;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,12 +27,11 @@ public class AddShelter extends AppCompatActivity {
 
         addButton.setOnClickListener(v -> {
             if (!name.getText().toString().equals("")
-            && !city.getText().toString().equals("")
-            && !description.getText().toString().equals("")
-            && !longitude.getText().toString().equals("")
-            && !latitude.getText().toString().equals("")
-            && !address.getText().toString().equals(""))
-            {
+                    && !city.getText().toString().equals("")
+                    && !description.getText().toString().equals("")
+                    && !longitude.getText().toString().equals("")
+                    && !latitude.getText().toString().equals("")
+                    && !address.getText().toString().equals("")) {
                 Shelter newShelter = new Shelter(name.getText().toString(),
                         city.getText().toString(), address.getText().toString(),
                         description.getText().toString(),
@@ -44,6 +46,8 @@ public class AddShelter extends AppCompatActivity {
                 latitude.setText("");
                 address.setText("");
                 Toast.makeText(AddShelter.this, "Shelter added successfully", Toast.LENGTH_LONG).show();
+
+                startAlarm();
             }
         });
 //        Geocoder geocoder = new Geocoder(this);
@@ -52,5 +56,20 @@ public class AddShelter extends AppCompatActivity {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    private void startAlarm() {
+        ListenerService.timer(8);
+
+        Shelter nearestShelter = ListenerService.findClosestLocation(((ShelterApp) getApplicationContext()).getShelters(), 31.7, 35.1, 100);
+        Intent intentToBroadcast = new Intent("redColor");
+        if (nearestShelter == null) {
+            intentToBroadcast.putExtra("isShelterFound", false);
+        } else {
+
+            intentToBroadcast.putExtra("isShelterFound", true);
+            intentToBroadcast.putExtra("shelter", nearestShelter);
+        }
+        sendBroadcast(intentToBroadcast);
     }
 }

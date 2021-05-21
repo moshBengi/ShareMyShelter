@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         TextView shelterMapTextView = findViewById(R.id.shelterMapTextView);
         ShelterApp shelterApp = (ShelterApp) getApplicationContext();
         ArrayList<Shelter> shelters = shelterApp.getShelters();
-        shelters.add(new Shelter("ourShelter", "jerus", "hatayasim", "dsfsdf", 0, 0));
+        shelters.add(new Shelter("ourShelter", "jerus", "hatayasim", "idans 'MAMAD'", 0, 0));
 
 
-        showNotification("title", "msg");
+//        showNotification("title", "msg");
 
         shelterMapTextView.setOnClickListener(new View.OnClickListener() {
             @Override

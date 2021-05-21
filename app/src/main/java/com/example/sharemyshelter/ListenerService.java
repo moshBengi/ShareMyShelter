@@ -40,7 +40,7 @@ public class ListenerService extends IntentService {
 
     }
 
-    private void timer(int seconds) {
+    protected static void timer(int seconds) {
         try {
             for (int i = 0; i < seconds; i++) {
 
@@ -52,7 +52,7 @@ public class ListenerService extends IntentService {
         }
     }
 
-    Shelter findClosestLocation(ArrayList<Shelter> shelters, double lon, double lat, int maxDistance) {
+    public static Shelter findClosestLocation(ArrayList<Shelter> shelters, double lon, double lat, int maxDistance) {
         if (shelters.isEmpty()) {
             return null;
         }
@@ -87,7 +87,7 @@ public class ListenerService extends IntentService {
     }
 
 
-    double distance(double lon, double lat, double lon1, double lat1) {
+    static double distance(double lon, double lat, double lon1, double lat1) {
         return ((lon - lon1) * (lon - lon1)) + ((lat - lat1) * (lat - lat1));
     }
 }
